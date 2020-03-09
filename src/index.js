@@ -5,6 +5,7 @@ import { ConnectedRouter } from 'connected-react-router';
 
 import App from './components/App';
 import store, { history } from './store';
+import './main.css';
 
 render(
   <Provider store={store}>
