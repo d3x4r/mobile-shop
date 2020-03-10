@@ -20,7 +20,6 @@ const fetchPhones = () => async (dispatch) => {
   dispatch(fetchPhonesRequest());
   try {
     const phones = await fetchPhonesFromApi();
-    console.log(phones);
     dispatch(fetchPhonesSuccess(phones));
   } catch (err) {
     dispatch(fetchPhonesFailure(err));
