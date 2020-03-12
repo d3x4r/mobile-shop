@@ -16,6 +16,31 @@ const fetchPhonesFailure = (err) => ({
   error: true,
 });
 
+const fetchMorePhonesRequest = () => ({
+  type: 'FETCH_MORE_PHONES_REQUEST',
+});
+
+const fetchMorePhonesSuccess = (phones) => ({
+  type: 'FETCH_MORE_PHONES_SUCCESS',
+  payload: phones,
+});
+
+const fetchMorePhonesFailure = (err) => ({
+  type: 'FETCH_MORE_PHONES_FAILURE',
+  payload: err,
+  error: true,
+});
+
+const fetchMorePhones = () => async (dispatch) => {
+  dispatch(fetchMorePhonesRequest());
+  try {
+    const phones = await fetchPhonesFromApi();
+    dispatch(fetchMorePhonesSuccess(phones));
+  } catch (err) {
+    dispatch(fetchMorePhonesFailure(err));
+  }
+};
+
 const fetchPhones = () => async (dispatch) => {
   dispatch(fetchPhonesRequest());
   try {
@@ -26,4 +51,4 @@ const fetchPhones = () => async (dispatch) => {
   }
 };
 
-export { fetchPhones };
+export { fetchPhones, fetchMorePhones };
